@@ -1,8 +1,8 @@
 #%RAML 0.8
-title: YaasApiDocumentV1
+title: Document
 version: v0.1
 mediaType: application/json
-baseUri: https://api.eu.yaas.io/hybris/document/v1
+baseUri: https://api.yaas.io/hybris/document/v1
 schemas:
   - genericResponse: |
       {
@@ -52,8 +52,8 @@ schemas:
               "status": {
                   "type": "integer",
                   "description": "original HTTP error code, should be consistent with the response HTTP code",
-                  "minimum": 100,
-                  "maximum": 599
+                  "minimum": "100",
+                  "maximum": "599"
               },
               "type": {
                   "type": "string",
@@ -280,7 +280,7 @@ schemas:
                   }
               },
               "id": {
-                     "title":"id",   "type": "string",   "description":"Value contains object ID."
+                  "$ref": "https://api.yaas.io/patterns/v1/schema-id.json"
               }
           }
       }
@@ -300,15 +300,11 @@ schemas:
                   "type": "object",
                   "properties": {
                       "createdAt": {
-                        "title":"createdAt",
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Value contains creation time of document."                      },
+                          "$ref": "https://api.yaas.io/patterns/v1/schema-createdAt.json"
+                      },
                       "modifiedAt": {
-                        "title":"modifiedAt",
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "Value contains modification time of document."                      },
+                          "$ref": "https://api.yaas.io/patterns/v1/schema-modifiedAt.json"
+                      },
                       "version": {
                           "type": "integer",
                           "minimum": 1
@@ -344,7 +340,7 @@ schemas:
                   }
               },
               "id": {
-                     "title":"id",   "type": "string",   "description":"Value contains object ID."
+                  "$ref": "https://api.yaas.io/patterns/v1/schema-id.json"
               }
           }
       }
@@ -367,17 +363,11 @@ schemas:
                       "type": "object",
                       "properties": {
                           "createdAt": {
-                            "title":"createdAt",
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "Value contains creation time of document."
+                              "$ref": "https://api.yaas.io/patterns/v1/schema-createdAt.json"
                           },
                           "modifiedAt": {
-                            "title":"modifiedAt",
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "Value contains modification time of document."
-                    },
+                              "$ref": "https://api.yaas.io/patterns/v1/schema-modifiedAt.json"
+                          },
                           "version": {
                               "type": "integer",
                               "minimum": 1
@@ -413,7 +403,7 @@ schemas:
                       }
                   },
                   "id": {
-                         "title":"id",   "type": "string",   "description":"Value contains object ID."
+                      "$ref": "https://api.yaas.io/patterns/v1/schema-id.json"
                   }
               }
           }
@@ -856,7 +846,7 @@ traits:
                 The link to the previous page (**prev**) is optional. If not present, the previous page is not available, as the current page is the first page of the result.
 
               example: |
-                '<http://sample.com?pageNumber=2&pageSize=10>; rel="self", <http://sample.com?pageNumber=3&pageSize=10>; rel="next"'
+                <http://sample.com?pageNumber=2&pageSize=10>; rel="self", <http://sample.com?pageNumber=3&pageSize=10>; rel="next"
               required: true
               repeat: true
               type: string
@@ -1665,7 +1655,7 @@ traits:
 
           required: false
         language:
-          type: string
+          type: boolean
           description: |
             The language that determines the list of stop words for the search. Defaults to false. **Applicable only to full text search.**
 
@@ -2105,10 +2095,10 @@ traits:
                                 "type": "integer"
                             },
                             "indexCount": {
-                                "type": "integer"
+                                "type": "null"
                             },
                             "dataSizeBytes": {
-                                "type": "integer"
+                                "type": "null"
                             }
                         },
                         "required": [
@@ -2124,28 +2114,22 @@ traits:
               example: |
                 [
                   {
-                    "timestamp": "2016-11-23T09:54:04.798",
+                    "timestamp": "2016-11-23T09:54:04.798+0000",
                     "client": "hybris.product",
                     "tenant": "tenant1",
-                    "typeCount": 5,
-                    "dataSizeBytes": 212223,
-                    "indexCount": 1
+                    "typeCount": 5
                   },
                   {
-                    "timestamp": "2016-11-23T09:54:04.798",
+                    "timestamp": "2016-11-23T09:54:04.798+0000
                     "client": "hybris.product",
                     "tenant": "tenant2",
-                    "typeCount": 3,
-                    "dataSizeBytes": 212223,
-                    "indexCount": 1
+                    "typeCount": 3
                   },
                   {
-                    "timestamp": "2016-11-23T09:54:04.798",
+                    "timestamp": "2016-11-23T09:54:04.798+0000",
                     "client": "hybris.product",
                     "tenant": "tenant3",
-                    "typeCount": 4,
-                    "dataSizeBytes": 212223,
-                    "indexCount": 1
+                    "typeCount": 4
                   }
                 ]
 
@@ -2402,7 +2386,7 @@ traits:
                   }
                 example: |
                   {
-                      "timestamp": "2016-11-23T09:54:04.798",
+                      "timestamp": "2016-11-23T09:54:04.798+0000",
                       "client": "hybris.product",
                       "tenantCount": 253,
                       "typeCount": 276,
@@ -2710,8 +2694,8 @@ traits:
                       "status": {
                           "type": "integer",
                           "description": "original HTTP error code, should be consistent with the response HTTP code",
-                          "minimum": 100,
-                          "maximum": 599
+                          "minimum": "100",
+                          "maximum": "599"
                       },
                       "type": {
                           "type": "string",
@@ -2892,8 +2876,8 @@ traits:
                       "status": {
                           "type": "integer",
                           "description": "original HTTP error code, should be consistent with the response HTTP code",
-                          "minimum": 100,
-                          "maximum": 599
+                          "minimum": "100",
+                          "maximum": "599"
                       },
                       "type": {
                           "type": "string",
@@ -2991,8 +2975,8 @@ traits:
                       "status": {
                           "type": "integer",
                           "description": "original HTTP error code, should be consistent with the response HTTP code",
-                          "minimum": 100,
-                          "maximum": 599
+                          "minimum": "100",
+                          "maximum": "599"
                       },
                       "type": {
                           "type": "string",
@@ -3173,8 +3157,8 @@ traits:
                       "status": {
                           "type": "integer",
                           "description": "original HTTP error code, should be consistent with the response HTTP code",
-                          "minimum": 100,
-                          "maximum": 599
+                          "minimum": "100",
+                          "maximum": "599"
                       },
                       "type": {
                           "type": "string",
@@ -3272,8 +3256,8 @@ traits:
                       "status": {
                           "type": "integer",
                           "description": "original HTTP error code, should be consistent with the response HTTP code",
-                          "minimum": 100,
-                          "maximum": 599
+                          "minimum": "100",
+                          "maximum": "599"
                       },
                       "type": {
                           "type": "string",
@@ -3454,8 +3438,8 @@ traits:
                       "status": {
                           "type": "integer",
                           "description": "original HTTP error code, should be consistent with the response HTTP code",
-                          "minimum": 100,
-                          "maximum": 599
+                          "minimum": "100",
+                          "maximum": "599"
                       },
                       "type": {
                           "type": "string",
@@ -3619,7 +3603,7 @@ traits:
                 }
               example: |
                 {
-                  "tenant" : "bookstore",
+                  "tenant" : "bookstore"
                   "app" : "product",
                   "types" : [
                       "products",
@@ -3672,8 +3656,8 @@ traits:
                         "status": {
                             "type": "integer",
                             "description": "original HTTP error code, should be consistent with the response HTTP code",
-                            "minimum": 100,
-                            "maximum": 599
+                            "minimum": "100",
+                            "maximum": "599"
                         },
                         "type": {
                             "type": "string",
@@ -3967,8 +3951,8 @@ traits:
                         "status": {
                             "type": "integer",
                             "description": "original HTTP error code, should be consistent with the response HTTP code",
-                            "minimum": 100,
-                            "maximum": 599
+                            "minimum": "100",
+                            "maximum": "599"
                         },
                         "type": {
                             "type": "string",
@@ -4255,8 +4239,8 @@ traits:
                         "status": {
                             "type": "integer",
                             "description": "original HTTP error code, should be consistent with the response HTTP code",
-                            "minimum": 100,
-                            "maximum": 599
+                            "minimum": "100",
+                            "maximum": "599"
                         },
                         "type": {
                             "type": "string",
@@ -4594,8 +4578,8 @@ traits:
                           "status": {
                               "type": "integer",
                               "description": "original HTTP error code, should be consistent with the response HTTP code",
-                              "minimum": 100,
-                              "maximum": 599
+                              "minimum": "100",
+                              "maximum": "599"
                           },
                           "type": {
                               "type": "string",
@@ -4934,7 +4918,7 @@ traits:
 
             required: false
           language:
-            type: string
+            type: boolean
             description: |
               The language that determines the list of stop words for the search. Defaults to false. **Applicable only to full text search.**
 
@@ -5063,7 +5047,7 @@ traits:
                   The link to the previous page (**prev**) is optional. If not present, the previous page is not available, as the current page is the first page of the result.
 
                 example: |
-                  '<http://sample.com?pageNumber=2&pageSize=10>; rel="self", <http://sample.com?pageNumber=3&pageSize=10>; rel="next"'
+                  <http://sample.com?pageNumber=2&pageSize=10>; rel="self", <http://sample.com?pageNumber=3&pageSize=10>; rel="next"
                 required: true
                 repeat: true
                 type: string
@@ -5099,16 +5083,11 @@ traits:
                                   "type": "object",
                                   "properties": {
                                       "createdAt": {
-                                                "title":"createdAt",
-                                                "type": "string",
-                                                "format": "date-time",
-                                                "description": "Value contains creation time of document."
+                                          "$ref": "https://api.yaas.io/patterns/v1/schema-createdAt.json"
                                       },
                                       "modifiedAt": {
-                                        "title":"modifiedAt",
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "description": "Value contains modification time of document."                                      },
+                                          "$ref": "https://api.yaas.io/patterns/v1/schema-modifiedAt.json"
+                                      },
                                       "version": {
                                           "type": "integer",
                                           "minimum": 1
@@ -5144,7 +5123,7 @@ traits:
                                   }
                               },
                               "id": {
-                                     "title":"id",   "type": "string",   "description":"Value contains object ID."
+                                  "$ref": "https://api.yaas.io/patterns/v1/schema-id.json"
                               }
                           }
                       }
@@ -5157,8 +5136,8 @@ traits:
                           "kind": "pies",
                           "metadata": {
                               "version": 1,
-                              "createdAt": "2015-01-01T10:00:00.530Z",
-                              "modifiedAt": "2015-02-01T11:00:00.530Z"
+                              "createdAt": "2015-01-01T10:00:00.530+0000",
+                              "modifiedAt": "2015-02-01T11:00:00.530+0000"
                           }
                       },
                       {
@@ -5167,8 +5146,8 @@ traits:
                           "kind": "pies",
                           "metadata": {
                               "version": 2,
-                              "createdAt": "2015-01-01T10:00:00.530Z",
-                              "modifiedAt": "2015-02-01T12:00:00.530Z"
+                              "createdAt": "2015-01-01T10:00:00.530+0000",
+                              "modifiedAt": "2015-02-01T12:00:00.530+0000"
                           }
                       }
                   ]
@@ -5231,8 +5210,8 @@ traits:
                           "status": {
                               "type": "integer",
                               "description": "original HTTP error code, should be consistent with the response HTTP code",
-                              "minimum": 100,
-                              "maximum": 599
+                              "minimum": "100",
+                              "maximum": "599"
                           },
                           "type": {
                               "type": "string",
@@ -5585,7 +5564,7 @@ traits:
                           }
                       },
                       "id": {
-                             "title":"id",   "type": "string",   "description":"Value contains object ID."
+                          "$ref": "https://api.yaas.io/patterns/v1/schema-id.json"
                       }
                   }
               }
@@ -5649,8 +5628,8 @@ traits:
                           "status": {
                               "type": "integer",
                               "description": "original HTTP error code, should be consistent with the response HTTP code",
-                              "minimum": 100,
-                              "maximum": 599
+                              "minimum": "100",
+                              "maximum": "599"
                           },
                           "type": {
                               "type": "string",
@@ -5917,8 +5896,8 @@ traits:
                           "status": {
                               "type": "integer",
                               "description": "original HTTP error code, should be consistent with the response HTTP code",
-                              "minimum": 100,
-                              "maximum": 599
+                              "minimum": "100",
+                              "maximum": "599"
                           },
                           "type": {
                               "type": "string",
@@ -6061,8 +6040,8 @@ traits:
                           "status": {
                               "type": "integer",
                               "description": "original HTTP error code, should be consistent with the response HTTP code",
-                              "minimum": 100,
-                              "maximum": 599
+                              "minimum": "100",
+                              "maximum": "599"
                           },
                           "type": {
                               "type": "string",
@@ -6414,7 +6393,7 @@ traits:
                           }
                       },
                       "id": {
-                             "title":"id",   "type": "string",   "description":"Value contains object ID."
+                          "$ref": "https://api.yaas.io/patterns/v1/schema-id.json"
                       }
                   }
               }
@@ -6481,8 +6460,8 @@ traits:
                           "status": {
                               "type": "integer",
                               "description": "original HTTP error code, should be consistent with the response HTTP code",
-                              "minimum": 100,
-                              "maximum": 599
+                              "minimum": "100",
+                              "maximum": "599"
                           },
                           "type": {
                               "type": "string",
@@ -6749,8 +6728,8 @@ traits:
                           "status": {
                               "type": "integer",
                               "description": "original HTTP error code, should be consistent with the response HTTP code",
-                              "minimum": 100,
-                              "maximum": 599
+                              "minimum": "100",
+                              "maximum": "599"
                           },
                           "type": {
                               "type": "string",
@@ -6947,16 +6926,10 @@ traits:
                                 "type": "object",
                                 "properties": {
                                     "createdAt": {
-                                      "title":"createdAt",
-                                      "type": "string",
-                                      "format": "date-time",
-                                      "description": "Value contains creation time of document."
+                                        "$ref": "https://api.yaas.io/patterns/v1/schema-createdAt.json"
                                     },
                                     "modifiedAt": {
-                                      "title":"modifiedAt",
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "description": "Value contains modification time of document."
+                                        "$ref": "https://api.yaas.io/patterns/v1/schema-modifiedAt.json"
                                     },
                                     "version": {
                                         "type": "integer",
@@ -6993,7 +6966,7 @@ traits:
                                 }
                             },
                             "id": {
-                                   "title":"id",   "type": "string",   "description":"Value contains object ID."
+                                "$ref": "https://api.yaas.io/patterns/v1/schema-id.json"
                             }
                         }
                     }
@@ -7004,8 +6977,8 @@ traits:
                         "kind": "dog",
                         "metadata": {
                             "version": 1,
-                            "createdAt": "2015-01-01T12:00:00.530Z",
-                            "modifiedAt": "2015-02-01T12:00:00.530Z"
+                            "createdAt": "2015-01-01T12:00:00.530+0000",
+                            "modifiedAt": "2015-02-01T12:00:00.530+0000"
                         }
                     }
             304:
@@ -7067,8 +7040,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -7321,8 +7294,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -7493,8 +7466,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -7840,7 +7813,7 @@ traits:
                             }
                         },
                         "id": {
-                               "title":"id",   "type": "string",   "description":"Value contains object ID."
+                            "$ref": "https://api.yaas.io/patterns/v1/schema-id.json"
                         }
                     }
                 }
@@ -7904,8 +7877,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -8172,8 +8145,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -8361,7 +8334,7 @@ traits:
                             }
                         },
                         "id": {
-                               "title":"id",   "type": "string",   "description":"Value contains object ID."
+                            "$ref": "https://api.yaas.io/patterns/v1/schema-id.json"
                         }
                     }
                 }
@@ -8477,8 +8450,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -8731,8 +8704,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -8803,8 +8776,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -8916,8 +8889,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -9170,8 +9143,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -9307,8 +9280,8 @@ traits:
                               "status": {
                                   "type": "integer",
                                   "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                  "minimum": 100,
-                                  "maximum": 599
+                                  "minimum": "100",
+                                  "maximum": "599"
                               },
                               "type": {
                                   "type": "string",
@@ -9561,8 +9534,8 @@ traits:
                               "status": {
                                   "type": "integer",
                                   "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                  "minimum": 100,
-                                  "maximum": 599
+                                  "minimum": "100",
+                                  "maximum": "599"
                               },
                               "type": {
                                   "type": "string",
@@ -9674,8 +9647,8 @@ traits:
                               "status": {
                                   "type": "integer",
                                   "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                  "minimum": 100,
-                                  "maximum": 599
+                                  "minimum": "100",
+                                  "maximum": "599"
                               },
                               "type": {
                                   "type": "string",
@@ -9928,8 +9901,8 @@ traits:
                               "status": {
                                   "type": "integer",
                                   "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                  "minimum": 100,
-                                  "maximum": 599
+                                  "minimum": "100",
+                                  "maximum": "599"
                               },
                               "type": {
                                   "type": "string",
@@ -10115,8 +10088,8 @@ traits:
                                 "status": {
                                     "type": "integer",
                                     "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                    "minimum": 100,
-                                    "maximum": 599
+                                    "minimum": "100",
+                                    "maximum": "599"
                                 },
                                 "type": {
                                     "type": "string",
@@ -10408,8 +10381,8 @@ traits:
                                 "status": {
                                     "type": "integer",
                                     "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                    "minimum": 100,
-                                    "maximum": 599
+                                    "minimum": "100",
+                                    "maximum": "599"
                                 },
                                 "type": {
                                     "type": "string",
@@ -10749,8 +10722,8 @@ traits:
                                 "status": {
                                     "type": "integer",
                                     "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                    "minimum": 100,
-                                    "maximum": 599
+                                    "minimum": "100",
+                                    "maximum": "599"
                                 },
                                 "type": {
                                     "type": "string",
@@ -11003,8 +10976,8 @@ traits:
                                 "status": {
                                     "type": "integer",
                                     "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                    "minimum": 100,
-                                    "maximum": 599
+                                    "minimum": "100",
+                                    "maximum": "599"
                                 },
                                 "type": {
                                     "type": "string",
@@ -11075,8 +11048,8 @@ traits:
                                 "status": {
                                     "type": "integer",
                                     "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                    "minimum": 100,
-                                    "maximum": 599
+                                    "minimum": "100",
+                                    "maximum": "599"
                                 },
                                 "type": {
                                     "type": "string",
@@ -11195,8 +11168,8 @@ traits:
                                 "status": {
                                     "type": "integer",
                                     "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                    "minimum": 100,
-                                    "maximum": 599
+                                    "minimum": "100",
+                                    "maximum": "599"
                                 },
                                 "type": {
                                     "type": "string",
@@ -11449,8 +11422,8 @@ traits:
                                 "status": {
                                     "type": "integer",
                                     "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                    "minimum": 100,
-                                    "maximum": 599
+                                    "minimum": "100",
+                                    "maximum": "599"
                                 },
                                 "type": {
                                     "type": "string",
@@ -11842,15 +11815,15 @@ traits:
             application/json:
               example: |
                 {
-                  "sum": {
-                    "price": 1000,
-                    "value": 250
+                  sum : {
+                    price : 1000,
+                    value : 250
                   },
-                  "avg": {
-                    "weight": 23.5,
-                    "height": 177.7
+                  avg : {
+                    weight : 23.5,
+                    height: 177.7
                   },
-                  "count": 30
+                  count : 30
                 }
 
         304:
@@ -12729,8 +12702,8 @@ traits:
                         "status": {
                             "type": "integer",
                             "description": "original HTTP error code, should be consistent with the response HTTP code",
-                            "minimum": 100,
-                            "maximum": 599
+                            "minimum": "100",
+                            "maximum": "599"
                         },
                         "type": {
                             "type": "string",
@@ -12983,8 +12956,8 @@ traits:
                         "status": {
                             "type": "integer",
                             "description": "original HTTP error code, should be consistent with the response HTTP code",
-                            "minimum": 100,
-                            "maximum": 599
+                            "minimum": "100",
+                            "maximum": "599"
                         },
                         "type": {
                             "type": "string",
@@ -13084,8 +13057,8 @@ traits:
                         "status": {
                             "type": "integer",
                             "description": "original HTTP error code, should be consistent with the response HTTP code",
-                            "minimum": 100,
-                            "maximum": 599
+                            "minimum": "100",
+                            "maximum": "599"
                         },
                         "type": {
                             "type": "string",
@@ -13655,8 +13628,8 @@ traits:
                           "status": {
                               "type": "integer",
                               "description": "original HTTP error code, should be consistent with the response HTTP code",
-                              "minimum": 100,
-                              "maximum": 599
+                              "minimum": "100",
+                              "maximum": "599"
                           },
                           "type": {
                               "type": "string",
@@ -14032,8 +14005,8 @@ traits:
                           "status": {
                               "type": "integer",
                               "description": "original HTTP error code, should be consistent with the response HTTP code",
-                              "minimum": 100,
-                              "maximum": 599
+                              "minimum": "100",
+                              "maximum": "599"
                           },
                           "type": {
                               "type": "string",
@@ -15019,8 +14992,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -15273,8 +15246,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -15345,8 +15318,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -15469,8 +15442,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -15723,8 +15696,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
@@ -15795,8 +15768,8 @@ traits:
                             "status": {
                                 "type": "integer",
                                 "description": "original HTTP error code, should be consistent with the response HTTP code",
-                                "minimum": 100,
-                                "maximum": 599
+                                "minimum": "100",
+                                "maximum": "599"
                             },
                             "type": {
                                 "type": "string",
